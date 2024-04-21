@@ -17,6 +17,7 @@ public class DungeonGenerator : MonoBehaviour
     List<Cell> board;
     public GameObject roomPrefab;
     public Vector2 offset;
+    public int currentCell;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +32,19 @@ public class DungeonGenerator : MonoBehaviour
 
     void GenerateDungeon()
     {
+        bool[] lastOne = new bool[] { false, true, false, false };
         for (int xSize = 0; xSize < size.x; xSize++)
         {
+            
             for (int ySize = 0; ySize < size.y; ySize++)
             {
                 var newRoom = Instantiate(roomPrefab, new Vector3(xSize * offset.x, 0, ySize * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                if (xSize == size.x - 1 && ySize == size.y - 1)
+                {
+                    newRoom.UpdateRoom(lastOne);
+                }
                 newRoom.UpdateRoom(board[Mathf.FloorToInt(xSize + ySize * size.x)].status);
+                
             }
         }
     }
@@ -51,7 +59,8 @@ public class DungeonGenerator : MonoBehaviour
                 board.Add(new Cell());
             }
         }
-        int currentCell = startPos;
+        currentCell = startPos;
+        board[currentCell].status[0] = true;
         Stack<int> path = new Stack<int>();
         int whileLoopInt = 0;
         while (whileLoopInt < 1000)

@@ -10,7 +10,10 @@ public class RoomBehaviour : MonoBehaviour
     {
         for (int index = 0; index < status.Length; index++)
         {
-            walls[index].SetActive(!status[index]);
+            if (status[index])
+            {
+                walls[index].SetActive(false);
+            }
         }
     }
 }
