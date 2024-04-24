@@ -18,6 +18,9 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] //m
     private GameObject enemyPrefab; //m
 
+    [SerializeField] //m
+    private GameObject target; //m
+
     public Vector2 size;
     public int startPos = 0;
     List<Cell> board;
@@ -130,7 +133,7 @@ public class DungeonGenerator : MonoBehaviour
         GenerateDungeon();
 
         GetComponent<NavMeshSurface>().BuildNavMesh(); //m
-        Instantiate(enemyPrefab); //m
+        Instantiate(enemyPrefab, target.transform.position, Quaternion.identity); //m
     }
 
     List<int> CheckNeighbors(int cell)

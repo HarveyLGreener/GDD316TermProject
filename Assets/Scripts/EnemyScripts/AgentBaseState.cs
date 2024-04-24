@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AgentBaseState 
 {
-    public abstract void EnterState();
-    public abstract void Update();
-    public abstract void ExitState();
+    public abstract void EnterState(StateController agent);
+    public abstract void Update(StateController agent);
+    public abstract void ExitState(StateController agent);
 }
