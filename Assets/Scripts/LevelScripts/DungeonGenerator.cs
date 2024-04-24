@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class DungeonGenerator : MonoBehaviour
 {
+    // NOTE TO MATT: adding a //m comment to any line I write in case it somehow breaks something
+
     //Uses DFS algorithm
 
     public class Cell
@@ -11,6 +14,9 @@ public class DungeonGenerator : MonoBehaviour
         public bool visited = false;
         public bool[] status = new bool[4];
     }
+
+    [SerializeField] //m
+    private GameObject enemyPrefab; //m
 
     public Vector2 size;
     public int startPos = 0;
@@ -122,6 +128,9 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
         GenerateDungeon();
+
+        GetComponent<NavMeshSurface>().BuildNavMesh(); //m
+        Instantiate(enemyPrefab); //m
     }
 
     List<int> CheckNeighbors(int cell)
