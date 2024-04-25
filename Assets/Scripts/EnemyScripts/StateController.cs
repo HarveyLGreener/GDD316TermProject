@@ -13,6 +13,7 @@ public class StateController : MonoBehaviour
     public NavMeshAgent agent;
 
     public GameObject ball;
+    public GameObject[] waypoints;
 
     public MeshRenderer meshRenderer;
 
@@ -29,7 +30,7 @@ public class StateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        ball = FindObjectOfType<Ball>().gameObject; ;
+        ball = FindFirstObjectByType<Ball>().gameObject; 
     }
     private void Update()
     {
