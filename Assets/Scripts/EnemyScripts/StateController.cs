@@ -30,7 +30,7 @@ public class StateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        ball = FindFirstObjectByType<Ball>().gameObject; 
+        ball = FindFirstObjectByType<Ball>().gameObject;
     }
     private void Update()
     {
