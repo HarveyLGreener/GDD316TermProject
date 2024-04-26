@@ -165,7 +165,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   ball: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   meshRenderer: {fileID: 0}

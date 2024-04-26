@@ -8,7 +8,7 @@ public class StateController : MonoBehaviour
     public AgentBaseState currentState;
 
     public readonly ChaseState chaseState = new ChaseState();
-    public readonly PatrolState patrolState = new PatrolState();
+    //public readonly PatrolState patrolState = new PatrolState();
 
     public NavMeshAgent agent;
 

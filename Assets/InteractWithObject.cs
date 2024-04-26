@@ -8,6 +8,8 @@ public class InteractWithObject : MonoBehaviour
     public GameObject objectGrabbed;
     public Vector3 screenPoint;
     public Vector3 offset;
+    public float forceAmount = 10f;
+    public float yDirectionMulti = 1.5f;
     private void Start()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -27,7 +29,6 @@ public class InteractWithObject : MonoBehaviour
                     objectGrabbed.GetComponent<Rigidbody>().isKinematic = true;
                     objectGrabbed.transform.parent = this.gameObject.transform;
                     objectGrabbed.transform.localPosition = Vector3.zero;
-                    //objectGrabbed.transform.rotation = Quaternion.identity;
                     objectGrabbed.transform.localPosition = new Vector3(offset.x, offset.y, offset.z);
                     holdingObject = true;
                 }
@@ -37,6 +38,23 @@ public class InteractWithObject : MonoBehaviour
         {
             objectGrabbed.transform.parent = null;
             objectGrabbed.GetComponent<Rigidbody>().isKinematic = false;
+            Rigidbody rb = objectGrabbed.GetComponent<Rigidbody>();
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 direction = mousePosition - transform.position;
+            //direction.z = 0f; // Ensure z is 0 to keep the force in 2D space
+            float yDirection = Camera.main.transform.eulerAngles.x;
+            if (yDirection > 90f)
+            {
+                yDirection -= 360f;
+            }
+            Debug.Log(yDirection);
+            direction.y = yDirection /90f * -1;
+
+            // Normalize the direction vector
+            direction.Normalize();
+
+            // Apply force to the object in the direction of the mouse pointer
+            rb.AddForce(new Vector3(direction.x * forceAmount, direction.y * forceAmount * yDirectionMulti, direction.z * forceAmount), ForceMode.Impulse);
             objectGrabbed = null;
             holdingObject = false;
         }

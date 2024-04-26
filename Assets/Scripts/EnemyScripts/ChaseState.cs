@@ -20,7 +20,7 @@ public class ChaseState : AgentBaseState
         if (Mathf.Abs(agent.ball.transform.position.x - agent.transform.position.x) > 5 &&
             Mathf.Abs(agent.ball.transform.position.z - agent.transform.position.z) > 5)
         {
-            agent.TransitionToState(agent.patrolState);
+            //agent.TransitionToState(agent.patrolState);
         }
     }
 }
