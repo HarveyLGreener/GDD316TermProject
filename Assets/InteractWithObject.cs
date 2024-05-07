@@ -25,7 +25,6 @@ public class InteractWithObject : MonoBehaviour
                 if (hit.collider.gameObject.GetComponent<Rigidbody>() != null)
                 {
                     objectGrabbed = hit.collider.gameObject;
-                    Debug.Log("Trying to grab object");
                     objectGrabbed.GetComponent<Rigidbody>().isKinematic = true;
                     objectGrabbed.transform.parent = this.gameObject.transform;
                     objectGrabbed.transform.localPosition = Vector3.zero;
