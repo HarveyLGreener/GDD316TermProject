@@ -58,4 +58,15 @@ public class InteractWithObject : MonoBehaviour
             holdingObject = false;
         }
     }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.GetComponent<StateController>() != null)
+        {
+            objectGrabbed.transform.parent = null;
+            objectGrabbed.GetComponent<Rigidbody>().isKinematic = false;
+            objectGrabbed = null;
+            holdingObject = false;
+        }
+    }*/
 }
