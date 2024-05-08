@@ -8,14 +8,13 @@ public class StateController : MonoBehaviour
     public AgentBaseState currentState;
 
     public readonly ChaseState chaseState = new ChaseState();
-    //public readonly PatrolState patrolState = new PatrolState();
 
     public NavMeshAgent agent;
 
     public GameObject ball;
-    public GameObject[] waypoints;
 
     public MeshRenderer meshRenderer;
+    //public Transform shootPos;
 
     private void Start()
     {
@@ -30,10 +29,19 @@ public class StateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
-        ball = FindFirstObjectByType<Ball>().gameObject;
+        if (FindObjectOfType<Ball>() != null)
+        {
+            ball = FindObjectOfType<Ball>().gameObject;
+        }
+
+        //shootPos = FindObjectOfType<ShootPos>().gameObject.transform;
     }
     private void Update()
     {
+        if (FindObjectOfType<Ball>() != null && ball == null)
+        {
+            ball = FindObjectOfType<Ball>().gameObject;
+        }
         currentState.Update(this);   
     }
 }

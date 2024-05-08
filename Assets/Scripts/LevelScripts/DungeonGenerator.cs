@@ -27,6 +27,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject roomPrefab;
     public Vector2 offset;
     public int currentCell;
+    public GameObject ballPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +135,7 @@ public class DungeonGenerator : MonoBehaviour
 
         GetComponent<NavMeshSurface>().BuildNavMesh(); //m
         Instantiate(enemyPrefab, target.transform.position, Quaternion.identity); //m
+        Instantiate(ballPrefab, ballPrefab.transform.position, Quaternion.identity);
     }
 
     List<int> CheckNeighbors(int cell)

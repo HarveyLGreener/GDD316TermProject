@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.GetComponent<AgentAdder>() != null)
+        {
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            this.transform.parent = collision.collider.gameObject.transform;
+            this.transform.localPosition = new Vector3(1,0,1);
+        }
     }
 }
