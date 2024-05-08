@@ -28,6 +28,7 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = 20f;
         meshRenderer = GetComponent<MeshRenderer>();
         if (FindObjectOfType<Ball>() != null)
         {

@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CC: {fileID: 140467988}
-  moveSpeed: 10
+  moveSpeed: 15
   CamTransform: {fileID: 963194228}
   MouseSensitivity: 10
 --- !u!143 &140467988
