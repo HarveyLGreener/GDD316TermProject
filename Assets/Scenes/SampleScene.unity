@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CC: {fileID: 140467988}
-  moveSpeed: 15
+  moveSpeed: 11
   CamTransform: {fileID: 963194228}
   MouseSensitivity: 10
 --- !u!143 &140467988
@@ -484,6 +484,7 @@ MonoBehaviour:
   offset: {x: 1, y: 0, z: 1}
   forceAmount: 20
   yDirectionMulti: 1
+  ball: {fileID: 0}
 --- !u!1 &239813682
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 239813682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 195.48752, y: -103.25494, z: 123.731544}
+  m_LocalPosition: {x: 193.2, y: -103.25494, z: 123.731544}
   m_LocalScale: {x: 1, y: 100.08842, z: 262.80942}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -987,7 +988,7 @@ Transform:
   m_GameObject: {fileID: 633834645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.62751, y: -103.25494, z: 123.731544}
+  m_LocalPosition: {x: 53.9, y: -103.25494, z: 123.731544}
   m_LocalScale: {x: 1, y: 100.08842, z: 262.80942}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2120,7 +2121,7 @@ MonoBehaviour:
   scoreBoard: {fileID: 558708216}
   winText: {fileID: 1061286033}
   pointVal: 2
-  firstTo: 2
+  firstTo: 10
 --- !u!4 &1400961412
 Transform:
   m_ObjectHideFlags: 0

@@ -23,27 +23,27 @@ public class BallState : AgentBaseState
         }
         if (Mathf.Abs((agent.gameObject.transform.position - agent.shootPos.position).magnitude) < 5f && agent.gameObject.transform.childCount > 0)
         {
-            Debug.Log("Added Force");
             if (timerRestart)
             {
+                Debug.Log("Added Force");
                 timerRestart = false;
                 agent.ball.GetComponent<Rigidbody>().isKinematic = false;
-                agent.ball.GetComponent<Rigidbody>().AddForce(new Vector3(-0.5f, 15f, -10f), ForceMode.Impulse);
-                shotWaitTimer = 3f;
+                agent.ball.GetComponent<Rigidbody>().AddForce(new Vector3(-0f, 17f, -7f), ForceMode.Impulse);
+                shotWaitTimer = 1.5f;
+                agent.transform.DetachChildren();
 
             }
             if (shotWaitTimer <= 0f)
             {
-                agent.transform.DetachChildren();
                 timerRestart = true;
             }
             //agent.TransitionToState(agent.chaseState);
         }
-        else if (agent.gameObject.transform.childCount > 0)
+        else if (agent.gameObject.transform.childCount > 0 && shotWaitTimer <= 0f)
         {
             agent.agent.SetDestination(agent.shootPos.position);
         }
-        else
+        else if (shotWaitTimer <= 0f)
         {
             agent.TransitionToState(agent.chaseState);
         }

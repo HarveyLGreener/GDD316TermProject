@@ -10,9 +10,11 @@ public class InteractWithObject : MonoBehaviour
     public Vector3 offset;
     public float forceAmount = 10f;
     public float yDirectionMulti = 1.5f;
+    public GameObject ball;
     private void Start()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        ball = FindFirstObjectByType<Ball>().gameObject;
     }
     void Update()
     {
@@ -22,7 +24,7 @@ public class InteractWithObject : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 10))
             {
-                if (hit.collider.gameObject.GetComponent<Rigidbody>() != null)
+                if (hit.collider.gameObject.GetComponent<Ball>() != null)
                 {
                     objectGrabbed = hit.collider.gameObject;
                     objectGrabbed.GetComponent<Rigidbody>().isKinematic = true;
@@ -30,6 +32,13 @@ public class InteractWithObject : MonoBehaviour
                     objectGrabbed.transform.localPosition = Vector3.zero;
                     objectGrabbed.transform.localPosition = new Vector3(offset.x, offset.y, offset.z);
                     holdingObject = true;
+                }
+                else if (hit.collider.gameObject.GetComponent<StateController>() != null && hit.collider.gameObject.transform.childCount > 0)
+                {
+                    hit.collider.gameObject.transform.DetachChildren();
+                    ball.GetComponent<Rigidbody>().isKinematic = false;
+                    ball.GetComponent<Ball>().grabbable = false;
+                    ball.GetComponent<Rigidbody>().AddForce(Vector3.one);
                 }
             }
         }

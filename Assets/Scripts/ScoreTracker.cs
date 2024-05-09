@@ -32,7 +32,7 @@ public class ScoreTracker : MonoBehaviour
 
     void Start()
     {
-        scoreBoard.text = "" + player1score + "     " + player2score;
+        scoreBoard.text = "" + player1score + " | " + player2score;
         DontDestroyOnLoad(this.gameObject);
 
     }
@@ -48,7 +48,7 @@ public class ScoreTracker : MonoBehaviour
     }
     public void UpdateScoreBoard(string playerName)
     {
-        scoreBoard.text = "" + player1score + "     " + player2score;
+        scoreBoard.text = "" + player1score + " | " + player2score;
         if (player1score >= firstTo || player2score >= firstTo)
         {
             StartCoroutine(ResetGame(playerName));
@@ -74,7 +74,7 @@ public class ScoreTracker : MonoBehaviour
         winText.text = "";
         player1score = 0;
         player2score = 0;
-        scoreBoard.text = "" + player1score + "     " + player2score;
+        scoreBoard.text = "" + player1score + " | " + player2score;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

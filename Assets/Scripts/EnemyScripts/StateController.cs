@@ -33,7 +33,7 @@ public class StateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         shootPos = FindFirstObjectByType<ShootPos>().transform;
-        agent.speed = 20f;
+        agent.speed = 15f;
         meshRenderer = GetComponent<MeshRenderer>();
         if (FindObjectOfType<Ball>() != null)
         {
