@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private CharacterController CC;
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     private float velocity_y;
     private float grav = -9.8f;
     float camRotation = 0f;

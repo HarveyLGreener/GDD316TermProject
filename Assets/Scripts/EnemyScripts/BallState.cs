@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BallState : AgentBaseState
 {
@@ -8,12 +9,13 @@ public class BallState : AgentBaseState
     private bool timerRestart = true;
     public override void EnterState(StateController agent)
     {
+        agent.GetComponent<NavMeshAgent>().speed = 8;
         agent.meshRenderer.material.color = Color.red;
     }
 
     public override void ExitState(StateController agent)
     {
-
+        agent.GetComponent<NavMeshAgent>().speed = 11;
     }
     public override void Update(StateController agent)
     {

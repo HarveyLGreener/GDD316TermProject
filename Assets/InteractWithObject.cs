@@ -11,10 +11,14 @@ public class InteractWithObject : MonoBehaviour
     public float forceAmount = 10f;
     public float yDirectionMulti = 1.5f;
     public GameObject ball;
+    public PlayerMove playerMove;
+    public float initialSpeed;
     private void Start()
     {
+        playerMove = FindFirstObjectByType<PlayerMove>();
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         ball = FindFirstObjectByType<Ball>().gameObject;
+        initialSpeed = playerMove.moveSpeed;
     }
     void Update()
     {
@@ -24,8 +28,10 @@ public class InteractWithObject : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 10))
             {
+                playerMove.moveSpeed = initialSpeed * 0.75f;
                 if (hit.collider.gameObject.GetComponent<Ball>() != null)
                 {
+
                     objectGrabbed = hit.collider.gameObject;
                     objectGrabbed.GetComponent<Rigidbody>().isKinematic = true;
                     objectGrabbed.transform.parent = this.gameObject.transform;
@@ -44,6 +50,7 @@ public class InteractWithObject : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && holdingObject)
         {
+            playerMove.moveSpeed = initialSpeed;
             objectGrabbed.transform.parent = null;
             objectGrabbed.GetComponent<Rigidbody>().isKinematic = false;
             Rigidbody rb = objectGrabbed.GetComponent<Rigidbody>();

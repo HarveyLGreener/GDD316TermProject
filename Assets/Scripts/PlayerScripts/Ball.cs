@@ -5,11 +5,19 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public bool grabbable = true;
+    public InteractWithObject objectInteraction;
+
+    private void Start()
+    {
+        objectInteraction = FindFirstObjectByType<InteractWithObject>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
 
         if (collision.gameObject.GetComponent<AgentAdder>() != null && grabbable)
         {
+            objectInteraction.objectGrabbed = null;
+            objectInteraction.holdingObject = false;
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             this.transform.parent = collision.collider.gameObject.transform;
             this.transform.localPosition = new Vector3(1,0,1);
