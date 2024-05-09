@@ -15,6 +15,18 @@ public class BallState : AgentBaseState
     }
     public override void Update(StateController agent)
     {
-        agent.agent.SetDestination(agent.ball.transform.position);
+        if (Mathf.Abs((agent.gameObject.transform.position - agent.shootPos.position).magnitude) < 5f)
+        {
+            Debug.Log("taking the shot");
+        }
+        else if (agent.gameObject.transform.GetChildCount() > 0)
+        {
+            agent.agent.SetDestination(agent.shootPos.position);
+        }
+        else
+        {
+            agent.TransitionToState(agent.chaseState);
+        }
+
     }
 }

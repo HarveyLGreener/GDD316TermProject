@@ -9,12 +9,16 @@ public class StateController : MonoBehaviour
 
     public readonly ChaseState chaseState = new ChaseState();
 
+    public readonly BallState ballState = new BallState();
+
     public NavMeshAgent agent;
 
     public GameObject ball;
 
+
     public MeshRenderer meshRenderer;
-    //public Transform shootPos;
+    
+    public Transform shootPos;
 
     private void Start()
     {
@@ -28,6 +32,7 @@ public class StateController : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        shootPos = FindFirstObjectByType<ShootPos>().transform;
         agent.speed = 20f;
         meshRenderer = GetComponent<MeshRenderer>();
         if (FindObjectOfType<Ball>() != null)
